@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Welcome to QuickPOS!</h2>
+<p>Here's an overview of your store inventory.</p>
+
+<div class="row mt-4">
+
+    <div class="col-md-4 mb-3">
+        <div class="card dashboard-card">
+            <h5>Total Products</h5>
+            <h2>@ViewBag.TotalProducts</h2>
+            <p>Products in catalog</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card dashboard-card">
+            <h5>Total Stock</h5>
+            <h2>@ViewBag.TotalStock</h2>
+            <p>Available items</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card dashboard-card">
+            <h5>Low Stock</h5>
+            <h2>@ViewBag.LowStock</h2>
+            <p>Products with 10 or fewer stocks</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="card dashboard-card mt-3">
+    <h4>Quick Actions</h4>
+
+    <p>Manage your store easily.</p>
+
+    <a asp-controller="Cashier"
+       asp-action="Index"
+       class="btn btn-primary">
+        Open Cashier
+    </a>
+
+    <a asp-controller="Products"
+       asp-action="Index"
+       class="btn btn-secondary">
+        Manage Products
+    </a>
+</div>

@@ -1,0 +1,97 @@
+
+@model IEnumerable<QuickPOS.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="products-page">
+
+    <div class="products-heading">
+        <div>
+            <span class="inventory-label">INVENTORY</span>
+            <h2>Manage Products</h2>
+            <p>Create, update, and remove catalog items.</p>
+        </div>
+
+        <div class="products-buttons">
+            <a asp-controller="Cashier"
+               asp-action="Index"
+               class="btn cashier-btn">
+                🛒 Cashier
+            </a>
+
+            <a asp-action="Create"
+               class="btn add-product-btn">
+                + Add Product
+            </a>
+        </div>
+    </div>
+
+    <div class="products-table-card">
+
+        <div class="table-responsive">
+            <table class="table products-table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>PRODUCT</th>
+                        <th>CATEGORY</th>
+                        <th class="text-center">PRICE</th>
+                        <th class="text-center">STOCK</th>
+                        <th class="text-end">ACTIONS</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>#@product.Id</td>
+
+                            <td class="product-name">
+                                @product.Name
+                            </td>
+
+                            <td>
+                                <span class="product-category">
+                                    @product.Category
+                                </span>
+                            </td>
+
+                            <td class="text-center product-price">
+                                ₱@product.Price.ToString("0.00")
+                            </td>
+
+                            <td class="text-center">
+                                @product.Stock
+                            </td>
+
+                            <td class="text-end">
+                                <a asp-action="Edit"
+                                   asp-route-id="@product.Id"
+                                   class="btn edit-btn">
+                                    ✎ Edit
+                                </a>
+
+                                <a asp-action="Delete"
+                                   asp-route-id="@product.Id"
+                                   class="btn delete-btn">
+                                    ♜ Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="products-footer">
+            Products in catalog: @Model.Count()
+        </div>
+
+    </div>
+
+</div>
